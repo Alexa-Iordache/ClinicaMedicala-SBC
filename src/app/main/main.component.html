@@ -1,1 +1,11 @@
-<p>main works!</p>
+<div> Statistici la o clinica medicala </div>
+
+<div>Care sunt pacientii care au peste 30 de ani?</div>
+<button mat-raised-button color="primary" (click)="calculatePacientsAge()">
+  Afla
+</button>
+
+<div *ngIf="this.under20 !== 0">
+  <canvasjs-chart [options]="this.chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+</div>
+
