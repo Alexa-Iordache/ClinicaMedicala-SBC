@@ -13,9 +13,10 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.xmlService
-      .parseXmlFile('assets/data.xml')
+      .parseXmlFile('assets/bazaCunostinte.xml')
       .then((data) => {
         this.parsedData = data;
+        console.log(this.parsedData);
       })
       .catch((error) => {
         console.error('Error parsing XML:', error);

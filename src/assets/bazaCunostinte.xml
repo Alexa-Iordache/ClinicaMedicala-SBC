@@ -51,12 +51,6 @@
         </pacient>
     </pacienti>
 
-
-
-
-
-
-
     <doctori>
         <doctor>
             <nume>Popescu Daniela</nume>
@@ -88,7 +82,6 @@
             <specializare>Neurologie</specializare>
         </doctor>
     </doctori>
-
 
     <consultatii>
         <consultatie>
@@ -190,8 +183,6 @@
         </consultatie>
     </consultatii>
 
-
-
     <fise_medicale>
         <fisa_medicala>
             <nume_pacient>Andrei</nume_pacient>
@@ -228,7 +219,7 @@
             <boala>dificultati_respiratorii</boala>
         </fisa_medicala>
 
-     </fise_medicale>
+    </fise_medicale>
 
     <spitale>
         <spital>
