@@ -9,6 +9,9 @@ import { XmlService } from './main/main.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     HttpClientModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    CanvasJSAngularChartsModule
+    CanvasJSAngularChartsModule,
+    MatInputModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [XmlService],
   bootstrap: [AppComponent]

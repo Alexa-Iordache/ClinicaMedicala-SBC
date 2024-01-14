@@ -55,3 +55,59 @@
     [styles]="{ width: '100%', height: '360px' }"
   ></canvasjs-chart>
 </div>
+
+<div>Cati pacienti au fost la fiecare doctor? </div>
+<button mat-raised-button color="primary" (click)="calculatePacientsBasedOnDoctor()">
+  Afla
+</button>
+
+<div
+  *ngIf="
+    this.popescuPacients !== 0 ||
+    this.dumitruPacients !== 0 ||
+    this.ionescuPacients !== 0 ||
+    this.tomaPacients !== 0 ||
+    this.adamPacients !== 0
+  "
+>
+  <canvasjs-chart
+    [options]="this.chartPacientsBasedOnDoctors"
+    [styles]="{ width: '100%', height: '360px' }"
+  ></canvasjs-chart>
+</div>
+
+<div>Capacitatea spitalelor </div>
+<button mat-raised-button color="primary" (click)="calculateHospitalCapacity()">
+  Afla
+</button>
+
+<div
+  *ngIf="
+    this.hospitalCapacityOver1500 !== 0 ||
+    this.hospitalCapacityUnder1500 !== 0
+  "
+>
+  <canvasjs-chart
+    [options]="this.chartHospitalCapacity"
+    [styles]="{ width: '100%', height: '360px' }"
+  ></canvasjs-chart>
+</div>
+
+<div> Verifica daca doctorul introdus exista la clinica sau nu</div>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nume doctor</mat-label>
+    <input matInput name="doctorName" [(ngModel)]="doctorName">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="verifyDoctor()">Submit</button>
+</form>
+
+<div *ngIf="doctorExists === true"> {{ doctorName }} </div>
+
+<div> Cati pacienti are clinica?</div>
+<button mat-raised-button color="primary" (click)="calculateNumberOfPatients()">
+  Afla
+</button>
+<div *ngIf="numberOfPatients !== 0"> {{ numberOfPatients }} pacienti</div>
+
+

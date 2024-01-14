@@ -47,6 +47,12 @@ export class MainComponent implements OnInit {
   // chart for season appointment
   chartSeasonApp = {};
 
+  // chart for pacients and doctors
+  chartPacientsBasedOnDoctors = {};
+
+  // chart for hospital capacity
+  chartHospitalCapacity = {};
+
   // number of pacients that had an appointment to cardiology
   cardiologyPacients: number = 0;
 
@@ -67,6 +73,34 @@ export class MainComponent implements OnInit {
 
   // number of appointments that took place in winter
   winterApp: number = 0;
+
+  // number of pacients that went to Popescu Daniela
+  popescuPacients: number = 0;
+
+  // number of pacients that went to Dumitru Stefan
+  dumitruPacients: number = 0;
+
+  // number of pacients that went to Ionescu Lavinia
+  ionescuPacients: number = 0;
+
+  // number of pacients that went to Toma Razvan
+  tomaPacients: number = 0;
+
+  // number of pacients that went to Adam Miruna
+  adamPacients: number = 0;
+
+  // number of hospitals that has a capacity of more than 1500 places
+  hospitalCapacityOver1500: number = 0;
+
+  // number of hospitals that has a capacity of less than 1500 places
+  hospitalCapacityUnder1500: number = 0;
+
+  // if the doctor introduced in input exists or not
+  doctorExists: boolean = false;
+
+  numberOfPatients: number = 0;
+
+  doctorName: string = '';
 
   constructor(private xmlService: XmlService) {}
 
@@ -135,7 +169,7 @@ export class MainComponent implements OnInit {
       data: [
         {
           type: 'pie',
-          indexLabel: '{name}: {y}%',
+          indexLabel: '{name}: {y} pacienti',
           dataPoints: [
             { name: 'Sub 20 de ani', y: this.under20 },
             { name: 'Intre 20 si 30 de ani', y: this.between20and30 },
@@ -195,7 +229,7 @@ export class MainComponent implements OnInit {
       data: [
         {
           type: 'pie',
-          indexLabel: '{name}: {y}%',
+          indexLabel: '{name}: {y} pacienti',
           dataPoints: [
             { name: 'Cardiologie', y: this.cardiologyPacients },
             { name: 'Stomatologie', y: this.dentistryPacients },
@@ -206,6 +240,7 @@ export class MainComponent implements OnInit {
     };
   }
 
+  // returns how many appointments took place in each season
   calculateAppointmentsBasedOnSeason(): void {
     this.springApp = 0;
     this.summerApp = 0;
@@ -249,7 +284,7 @@ export class MainComponent implements OnInit {
       data: [
         {
           type: 'pie',
-          indexLabel: '{name}: {y}%',
+          indexLabel: '{name}: {y} programari',
           dataPoints: [
             { name: 'Vara', y: this.summerApp },
             { name: 'Primavara', y: this.springApp },
@@ -294,5 +329,117 @@ export class MainComponent implements OnInit {
     } else {
       return 'Date is not valid';
     }
+  }
+
+   // method that returns the number of pacients based on the doctor
+  calculatePacientsBasedOnDoctor(): void {
+    this.popescuPacients = 0;
+    this.dumitruPacients = 0;
+    this.ionescuPacients = 0;
+    this.tomaPacients = 0;
+    this.adamPacients = 0;
+
+    for (let i = 0; i < this.appointments.consultatie.length; i++) {
+      const doctorName = this.appointments.consultatie[i].nume_doctor._text;
+      if (doctorName === 'Popescu Daniela') this.popescuPacients++;
+      if (doctorName === 'Dumitru Stefan') this.dumitruPacients++;
+      if (doctorName === 'Ionescu Lavinia') this.ionescuPacients++;
+      if (doctorName === 'Toma Razvan') this.tomaPacients++;
+      if (doctorName === 'Adam Miruna') this.adamPacients++;
+
+      this.chartPacientsBasedOnDoctors = {
+        animationEnabled: true,
+        title: {
+          text: 'Statistica pacienti in functie de doctorul la care au fost',
+        },
+        data: [
+          {
+            type: 'pie',
+            indexLabel: '{name}: {y} pacienti',
+            dataPoints: [
+              {
+                name: 'Pacienti care au fost la Popescu Daniela',
+                y: this.popescuPacients,
+              },
+              {
+                name: 'Pacienti care au fost la Dumitru Stefan',
+                y: this.dumitruPacients,
+              },
+              {
+                name: 'Pacienti care au fost la Ionescu Lavinia',
+                y: this.ionescuPacients,
+              },
+              {
+                name: 'Pacienti care au fost la Toma Razvan',
+                y: this.tomaPacients,
+              },
+              {
+                name: 'Pacienti care au fost la Adam Miruna',
+                y: this.adamPacients,
+              },
+            ],
+          },
+        ],
+      };
+    }
+  }
+
+  // method that returns the number of hospitals that has a capacity over 1500 places
+  // and the number of hospitals that has a capacity under 1500 places
+  calculateHospitalCapacity(): void {
+    this.hospitalCapacityOver1500 = 0;
+    this.hospitalCapacityUnder1500 = 0;
+
+    for (let i = 0; i < this.hospitals.spital.length; i++) {
+      const capacity = parseInt(this.hospitals.spital[i].capacitate._text, 10);
+      if (capacity >= 1500) this.hospitalCapacityOver1500++;
+      if (capacity < 1500) this.hospitalCapacityUnder1500++;
+
+      this.chartHospitalCapacity = {
+        animationEnabled: true,
+        title: {
+          text: 'Statistica capacitate spitale',
+        },
+        data: [
+          {
+            type: 'pie',
+            indexLabel: '{name}: {y} spitale',
+            dataPoints: [
+              {
+                name: 'Spitale cu o capacitate mai mare de 1500',
+                y: this.hospitalCapacityOver1500,
+              },
+              {
+                name: 'Spitale cu o capacitate mai mica de 1500',
+                y: this.hospitalCapacityUnder1500,
+              }
+            ],
+          },
+        ],
+      };
+    }
+  }
+
+  // methid that checks if a doctor exists or not
+  verifyDoctor(): void {
+    this.doctorExists = false;
+    const doctorNames: string[] = [];
+    for (let i = 0; i < this.doctors.doctor.length; i++) {
+      const name = this.doctors.doctor[i].nume._text;
+      if (!doctorNames.includes(name)) {
+        doctorNames.push(name);
+      }
+    }
+
+    for (let j = 0; j < this.doctors.doctor.length; j++) {
+      if (this.doctorName === this.doctors.doctor[j].nume._text) {
+        this.doctorExists = true;
+      }
+    }
+  }
+
+  // method that calculates the number of patients
+  calculateNumberOfPatients(): void {
+    this.numberOfPatients = this.pacients.pacient.length;
   }
 }
