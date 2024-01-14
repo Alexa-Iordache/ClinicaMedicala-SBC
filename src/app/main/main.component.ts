@@ -42,11 +42,21 @@ export class MainComponent implements OnInit {
   chartPacientsAge = {};
 
   // chart for medical specialitie
-  chartMedicalSpecialities = {}
+  chartMedicalSpecialities = {};
 
+  // number of pacients that had an appointment to cardiology
   cardiologyPacients: number = 0;
+
+  // number of pacients that had an appointment to dentistry
   dentistryPacients: number = 0;
+
+  // number of pacients that had an appointment to neurology
   neurologyPacients: number = 0;
+
+  springApp: number = 0;
+  summerApp: number = 0;
+  autumnApp: number = 0;
+  winterApp: number = 0;
 
   constructor(private xmlService: XmlService) {}
 
@@ -179,10 +189,57 @@ export class MainComponent implements OnInit {
           dataPoints: [
             { name: 'Cardiologie', y: this.cardiologyPacients },
             { name: 'Stomatologie', y: this.dentistryPacients },
-            { name: 'Neurologie', y: this.neurologyPacients}
+            { name: 'Neurologie', y: this.neurologyPacients },
           ],
         },
       ],
     };
+  }
+
+  calculateAppointmentsBasedOnSeason(): void {
+    this.springApp = 0;
+    this.summerApp = 0;
+    this.autumnApp = 0;
+    this.winterApp = 0;
+
+    // for (let i = 0; i < this.appointments.consultatie.length; i++) {
+      // const dateString = this.appointments.consultatie[i].data_consultatiei;
+      // const dateParts = dateString.split('.');
+      // const transformedDate = new Date(
+      //   +dateParts[2],
+      //   +dateParts[1] - 1,
+      //   +dateParts[0]
+      // );
+
+      // const date1 = new Date('2023-12-10'); // Replace this with your actual date
+      // const date2 = new Date('2023-11-15'); // Replace this with your actual date
+
+      // if (date1 > date2) {
+      //   console.log('Date 1 is later than Date 2');
+      // } else if (date1 < date2) {
+      //   console.log('Date 1 is earlier than Date 2');
+      // } else {
+      //   console.log('Date 1 is equal to Date 2');
+      // }
+    // }
+
+    // this.chartPacientsAge = {
+    //   animationEnabled: true,
+    //   title: {
+    //     text: 'Statistica varsta pacienti',
+    //   },
+    //   data: [
+    //     {
+    //       type: 'pie',
+    //       indexLabel: '{name}: {y}%',
+    //       dataPoints: [
+    //         { name: 'Sub 20 de ani', y: this.under20 },
+    //         { name: 'Intre 20 si 30 de ani', y: this.between20and30 },
+    //         { name: 'Intre 30 si 40 de ani', y: this.between30and40 },
+    //         { name: 'Peste 40 de ani', y: this.over40 },
+    //       ],
+    //     },
+    //   ],
+    // };
   }
 }
