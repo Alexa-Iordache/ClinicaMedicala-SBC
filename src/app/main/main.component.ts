@@ -11,8 +11,8 @@ export class MainComponent implements OnInit {
   // the entire object from xml file
   medicalInformation: any;
 
-  // obejct with all the pacients
-  pacients: any;
+  // obejct with all the patients
+  patients: any;
 
   // obejct with all the doctors
   doctors: any;
@@ -26,20 +26,20 @@ export class MainComponent implements OnInit {
   // obejct with all the hospitals
   hospitals: any;
 
-  // how many pacients are under 20 years old
+  // how many patients are under 20 years old
   under20: number = 0;
 
-  // how many pacients are between 20 years old and 30 years old
+  // how many patients are between 20 years old and 30 years old
   between20and30: number = 0;
 
-  // how many pacients are between 30 years old and 40 years old
+  // how many patients are between 30 years old and 40 years old
   between30and40: number = 0;
 
-  // how many pacients are over 40 years old
+  // how many patients are over 40 years old
   over40: number = 0;
 
-  // chart for pacients age
-  chartPacientsAge = {};
+  // chart for patients age
+  chartPatientsAge = {};
 
   // chart for medical specialitie
   chartMedicalSpecialities = {};
@@ -47,20 +47,20 @@ export class MainComponent implements OnInit {
   // chart for season appointment
   chartSeasonApp = {};
 
-  // chart for pacients and doctors
-  chartPacientsBasedOnDoctors = {};
+  // chart for patients and doctors
+  chartPatientsBasedOnDoctors = {};
 
   // chart for hospital capacity
   chartHospitalCapacity = {};
 
-  // number of pacients that had an appointment to cardiology
-  cardiologyPacients: number = 0;
+  // number of patients that had an appointment to cardiology
+  cardiologyPatients: number = 0;
 
-  // number of pacients that had an appointment to dentistry
-  dentistryPacients: number = 0;
+  // number of patients that had an appointment to dentistry
+  dentistryPatients: number = 0;
 
-  // number of pacients that had an appointment to neurology
-  neurologyPacients: number = 0;
+  // number of patients that had an appointment to neurology
+  neurologyPatients: number = 0;
 
   // number of appointments that took place in spring
   springApp: number = 0;
@@ -74,20 +74,20 @@ export class MainComponent implements OnInit {
   // number of appointments that took place in winter
   winterApp: number = 0;
 
-  // number of pacients that went to Popescu Daniela
-  popescuPacients: number = 0;
+  // number of patients that went to Popescu Daniela
+  popescuPatients: number = 0;
 
-  // number of pacients that went to Dumitru Stefan
-  dumitruPacients: number = 0;
+  // number of patients that went to Dumitru Stefan
+  dumitruPatients: number = 0;
 
-  // number of pacients that went to Ionescu Lavinia
-  ionescuPacients: number = 0;
+  // number of patients that went to Ionescu Lavinia
+  ionescuPatients: number = 0;
 
-  // number of pacients that went to Toma Razvan
-  tomaPacients: number = 0;
+  // number of patients that went to Toma Razvan
+  tomaPatients: number = 0;
 
-  // number of pacients that went to Adam Miruna
-  adamPacients: number = 0;
+  // number of patients that went to Adam Miruna
+  adamPatients: number = 0;
 
   // number of hospitals that has a capacity of more than 1500 places
   hospitalCapacityOver1500: number = 0;
@@ -98,7 +98,11 @@ export class MainComponent implements OnInit {
   // if the doctor introduced in input exists or not
   doctorExists: boolean = false;
 
+  // number of patients
   numberOfPatients: number = 0;
+
+  // if the check doctor was clicked or not
+  buttonCliked = false;
 
   doctorName: string = '';
 
@@ -114,8 +118,8 @@ export class MainComponent implements OnInit {
         // Now, jsonObject is a JavaScript object
         this.medicalInformation = jsonObject.informatii_medicale;
 
-        this.pacients = this.medicalInformation.pacienti;
-        console.log(this.pacients);
+        this.patients = this.medicalInformation.pacienti;
+        console.log(this.patients);
 
         this.doctors = this.medicalInformation.doctori;
         console.log(this.doctors);
@@ -134,16 +138,16 @@ export class MainComponent implements OnInit {
       });
   }
 
-  // returns how many pacients are under 20 years old, how many are between 20 and 30
+  // returns how many patients are under 20 years old, how many are between 20 and 30
   // how many are between 30 and 40 and how many are over 40 years old
-  calculatePacientsAge(): void {
+  calculatePatientsAge(): void {
     this.under20 = 0;
     this.between20and30 = 0;
     this.between30and40 = 0;
     this.over40 = 0;
 
-    for (let i = 0; i < this.pacients.pacient.length; i++) {
-      const age = parseInt(this.pacients.pacient[i].varsta._text, 10);
+    for (let i = 0; i < this.patients.pacient.length; i++) {
+      const age = parseInt(this.patients.pacient[i].varsta._text, 10);
       if (age <= 20) {
         this.under20++;
       }
@@ -161,7 +165,7 @@ export class MainComponent implements OnInit {
       }
     }
 
-    this.chartPacientsAge = {
+    this.chartPatientsAge = {
       animationEnabled: true,
       title: {
         text: 'Statistica varsta pacienti',
@@ -169,7 +173,7 @@ export class MainComponent implements OnInit {
       data: [
         {
           type: 'pie',
-          indexLabel: '{name}: {y} pacienti',
+          indexLabel: '{name}: {y} pacient(i)',
           dataPoints: [
             { name: 'Sub 20 de ani', y: this.under20 },
             { name: 'Intre 20 si 30 de ani', y: this.between20and30 },
@@ -181,12 +185,13 @@ export class MainComponent implements OnInit {
     };
   }
 
-  // returns how many pacients had appointments at cardiology, how many pacients had appointments at dentistry
-  // and how many pacients had appointments at neurology
+  // returns how many patients had appointments at cardiology,
+  // how many patients had appointments at dentistry
+  // and how many patients had appointments at neurology
   calculateMedicalSpecialty(): void {
-    this.cardiologyPacients = 0;
-    this.dentistryPacients = 0;
-    this.neurologyPacients = 0;
+    this.cardiologyPatients = 0;
+    this.dentistryPatients = 0;
+    this.neurologyPatients = 0;
 
     // create a list of medical specialities
     const medicalSpecialities: string[] = [];
@@ -197,29 +202,28 @@ export class MainComponent implements OnInit {
       }
     }
 
-    // calculate the number of pacients that had appointments at a certain speciality
-    const pacientsPerSpeciality: { [key: string]: number } = {};
+    // calculate the number of patients that had appointments at a certain speciality
+    const patientsPerSpeciality: { [key: string]: number } = {};
     for (let i = 0; i < medicalSpecialities.length; i++) {
       const medicalSpeciality = medicalSpecialities[i];
-      pacientsPerSpeciality[medicalSpeciality] = 0;
+      patientsPerSpeciality[medicalSpeciality] = 0;
     }
 
-    // Parcurge lista de consultatii și incrementeaaza numarul de pacienti pentru fiecare specializare
     for (let i = 0; i < this.appointments.consultatie.length; i++) {
       const numeDoctor = this.appointments.consultatie[i].nume_doctor._text;
 
       for (let j = 0; j < this.doctors.doctor.length; j++) {
         if (this.doctors.doctor[j].nume._text === numeDoctor) {
-          pacientsPerSpeciality[this.doctors.doctor[j].specializare._text]++;
+          patientsPerSpeciality[this.doctors.doctor[j].specializare._text]++;
         }
       }
     }
 
     // Afiseaza rezultatele
-    console.log('Numar pacienti pe specializare:', pacientsPerSpeciality);
-    this.cardiologyPacients = pacientsPerSpeciality['Cardiologie'];
-    this.dentistryPacients = pacientsPerSpeciality['Stomatologie'];
-    this.neurologyPacients = pacientsPerSpeciality['Neurologie'];
+    console.log('Numar pacienti pe specializare:', patientsPerSpeciality);
+    this.cardiologyPatients = patientsPerSpeciality['Cardiologie'];
+    this.dentistryPatients = patientsPerSpeciality['Stomatologie'];
+    this.neurologyPatients = patientsPerSpeciality['Neurologie'];
 
     this.chartMedicalSpecialities = {
       animationEnabled: true,
@@ -231,9 +235,9 @@ export class MainComponent implements OnInit {
           type: 'pie',
           indexLabel: '{name}: {y} pacienti',
           dataPoints: [
-            { name: 'Cardiologie', y: this.cardiologyPacients },
-            { name: 'Stomatologie', y: this.dentistryPacients },
-            { name: 'Neurologie', y: this.neurologyPacients },
+            { name: 'Cardiologie', y: this.cardiologyPatients },
+            { name: 'Stomatologie', y: this.dentistryPatients },
+            { name: 'Neurologie', y: this.neurologyPatients },
           ],
         },
       ],
@@ -331,23 +335,23 @@ export class MainComponent implements OnInit {
     }
   }
 
-   // method that returns the number of pacients based on the doctor
-  calculatePacientsBasedOnDoctor(): void {
-    this.popescuPacients = 0;
-    this.dumitruPacients = 0;
-    this.ionescuPacients = 0;
-    this.tomaPacients = 0;
-    this.adamPacients = 0;
+  // method that returns the number of patients based on the doctor
+  calculatePatientsBasedOnDoctor(): void {
+    this.popescuPatients = 0;
+    this.dumitruPatients = 0;
+    this.ionescuPatients = 0;
+    this.tomaPatients = 0;
+    this.adamPatients = 0;
 
     for (let i = 0; i < this.appointments.consultatie.length; i++) {
       const doctorName = this.appointments.consultatie[i].nume_doctor._text;
-      if (doctorName === 'Popescu Daniela') this.popescuPacients++;
-      if (doctorName === 'Dumitru Stefan') this.dumitruPacients++;
-      if (doctorName === 'Ionescu Lavinia') this.ionescuPacients++;
-      if (doctorName === 'Toma Razvan') this.tomaPacients++;
-      if (doctorName === 'Adam Miruna') this.adamPacients++;
+      if (doctorName === 'Popescu Daniela') this.popescuPatients++;
+      if (doctorName === 'Dumitru Stefan') this.dumitruPatients++;
+      if (doctorName === 'Ionescu Lavinia') this.ionescuPatients++;
+      if (doctorName === 'Toma Razvan') this.tomaPatients++;
+      if (doctorName === 'Adam Miruna') this.adamPatients++;
 
-      this.chartPacientsBasedOnDoctors = {
+      this.chartPatientsBasedOnDoctors = {
         animationEnabled: true,
         title: {
           text: 'Statistica pacienti in functie de doctorul la care au fost',
@@ -359,23 +363,23 @@ export class MainComponent implements OnInit {
             dataPoints: [
               {
                 name: 'Pacienti care au fost la Popescu Daniela',
-                y: this.popescuPacients,
+                y: this.popescuPatients,
               },
               {
                 name: 'Pacienti care au fost la Dumitru Stefan',
-                y: this.dumitruPacients,
+                y: this.dumitruPatients,
               },
               {
                 name: 'Pacienti care au fost la Ionescu Lavinia',
-                y: this.ionescuPacients,
+                y: this.ionescuPatients,
               },
               {
                 name: 'Pacienti care au fost la Toma Razvan',
-                y: this.tomaPacients,
+                y: this.tomaPatients,
               },
               {
                 name: 'Pacienti care au fost la Adam Miruna',
-                y: this.adamPacients,
+                y: this.adamPatients,
               },
             ],
           },
@@ -412,7 +416,7 @@ export class MainComponent implements OnInit {
               {
                 name: 'Spitale cu o capacitate mai mica de 1500',
                 y: this.hospitalCapacityUnder1500,
-              }
+              },
             ],
           },
         ],
@@ -422,6 +426,7 @@ export class MainComponent implements OnInit {
 
   // methid that checks if a doctor exists or not
   verifyDoctor(): void {
+    this.buttonCliked = true;
     this.doctorExists = false;
     const doctorNames: string[] = [];
     for (let i = 0; i < this.doctors.doctor.length; i++) {
@@ -440,6 +445,6 @@ export class MainComponent implements OnInit {
 
   // method that calculates the number of patients
   calculateNumberOfPatients(): void {
-    this.numberOfPatients = this.pacients.pacient.length;
+    this.numberOfPatients = this.patients.pacient.length;
   }
 }
