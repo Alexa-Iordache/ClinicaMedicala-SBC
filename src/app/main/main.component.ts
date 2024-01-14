@@ -26,13 +26,27 @@ export class MainComponent implements OnInit {
   // obejct with all the hospitals
   hospitals: any;
 
-  // array with the pacients that are older than 30 years
+  // how many pacients are under 20 years old
   under20: number = 0;
+
+  // how many pacients are between 20 years old and 30 years old
   between20and30: number = 0;
+
+  // how many pacients are between 30 years old and 40 years old
   between30and40: number = 0;
+
+  // how many pacients are over 40 years old
   over40: number = 0;
 
-  chartOptions = {};
+  // chart for pacients age
+  chartPacientsAge = {};
+
+  // chart for medical specialitie
+  chartMedicalSpecialities = {}
+
+  cardiologyPacients: number = 0;
+  dentistryPacients: number = 0;
+  neurologyPacients: number = 0;
 
   constructor(private xmlService: XmlService) {}
 
@@ -66,9 +80,9 @@ export class MainComponent implements OnInit {
       });
   }
 
-  // returns the pacients who are older than 30 years
+  // returns how many pacients are under 20 years old, how many are between 20 and 30
+  // how many are between 30 and 40 and how many are over 40 years old
   calculatePacientsAge(): void {
-
     this.under20 = 0;
     this.between20and30 = 0;
     this.between30and40 = 0;
@@ -93,20 +107,79 @@ export class MainComponent implements OnInit {
       }
     }
 
-    this.chartOptions = {
+    this.chartPacientsAge = {
       animationEnabled: true,
       title: {
         text: 'Statistica varsta pacienti',
       },
       data: [
         {
-          type: 'pie', //change type to column, line, area, doughnut, etc
+          type: 'pie',
           indexLabel: '{name}: {y}%',
           dataPoints: [
             { name: 'Sub 20 de ani', y: this.under20 },
             { name: 'Intre 20 si 30 de ani', y: this.between20and30 },
-            { name: 'Intre 30 si 40 de ani', y: this.between30and40},
-            { name: 'Peste 40 de ani', y: this.over40 }
+            { name: 'Intre 30 si 40 de ani', y: this.between30and40 },
+            { name: 'Peste 40 de ani', y: this.over40 },
+          ],
+        },
+      ],
+    };
+  }
+
+  // returns how many pacients had appointments at cardiology, how many pacients had appointments at dentistry
+  // and how many pacients had appointments at neurology
+  calculateMedicalSpecialty(): void {
+    this.cardiologyPacients = 0;
+    this.dentistryPacients = 0;
+    this.neurologyPacients = 0;
+
+    // create a list of medical specialities
+    const medicalSpecialities: string[] = [];
+    for (let i = 0; i < this.doctors.doctor.length; i++) {
+      const specializare = this.doctors.doctor[i].specializare._text;
+      if (!medicalSpecialities.includes(specializare)) {
+        medicalSpecialities.push(specializare);
+      }
+    }
+
+    // calculate the number of pacients that had appointments at a certain speciality
+    const pacientsPerSpeciality: { [key: string]: number } = {};
+    for (let i = 0; i < medicalSpecialities.length; i++) {
+      const medicalSpeciality = medicalSpecialities[i];
+      pacientsPerSpeciality[medicalSpeciality] = 0;
+    }
+
+    // Parcurge lista de consultatii și incrementeaaza numarul de pacienti pentru fiecare specializare
+    for (let i = 0; i < this.appointments.consultatie.length; i++) {
+      const numeDoctor = this.appointments.consultatie[i].nume_doctor._text;
+
+      for (let j = 0; j < this.doctors.doctor.length; j++) {
+        if (this.doctors.doctor[j].nume._text === numeDoctor) {
+          pacientsPerSpeciality[this.doctors.doctor[j].specializare._text]++;
+        }
+      }
+    }
+
+    // Afiseaza rezultatele
+    console.log('Numar pacienti pe specializare:', pacientsPerSpeciality);
+    this.cardiologyPacients = pacientsPerSpeciality['Cardiologie'];
+    this.dentistryPacients = pacientsPerSpeciality['Stomatologie'];
+    this.neurologyPacients = pacientsPerSpeciality['Neurologie'];
+
+    this.chartMedicalSpecialities = {
+      animationEnabled: true,
+      title: {
+        text: 'Statistica pacienti si specializarile la care au avut programari:',
+      },
+      data: [
+        {
+          type: 'pie',
+          indexLabel: '{name}: {y}%',
+          dataPoints: [
+            { name: 'Cardiologie', y: this.cardiologyPacients },
+            { name: 'Stomatologie', y: this.dentistryPacients },
+            { name: 'Neurologie', y: this.neurologyPacients}
           ],
         },
       ],

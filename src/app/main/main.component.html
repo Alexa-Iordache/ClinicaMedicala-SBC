@@ -1,11 +1,38 @@
-<div> Statistici la o clinica medicala </div>
+<div>Statistici la o clinica medicala</div>
 
-<div>Care sunt pacientii care au peste 30 de ani?</div>
+<div>Statistica despre varsta pacientilor</div>
 <button mat-raised-button color="primary" (click)="calculatePacientsAge()">
   Afla
 </button>
 
-<div *ngIf="this.under20 !== 0">
-  <canvasjs-chart [options]="this.chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+<div
+  *ngIf="
+    this.under20 !== 0 ||
+    this.between20and30 !== 0 ||
+    this.between30and40 !== 0 ||
+    this.over40 !== 0
+  "
+>
+  <canvasjs-chart
+    [options]="this.chartPacientsAge"
+    [styles]="{ width: '100%', height: '360px' }"
+  ></canvasjs-chart>
 </div>
 
+<div>Statistica despre specializarile la care au fost pacientii</div>
+<button mat-raised-button color="primary" (click)="calculateMedicalSpecialty()">
+  Afla
+</button>
+
+<div
+  *ngIf="
+    this.cardiologyPacients !== 0 ||
+    this.dentistryPacients !== 0 ||
+    this.neurologyPacients !== 0
+  "
+>
+  <canvasjs-chart
+    [options]="this.chartMedicalSpecialities"
+    [styles]="{ width: '100%', height: '360px' }"
+  ></canvasjs-chart>
+</div>

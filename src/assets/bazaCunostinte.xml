@@ -57,7 +57,7 @@
         </doctor>
 
         <doctor>
-            <nume>Dumitru Ștefan</nume>
+            <nume>Dumitru Stefan</nume>
             <specializare>Cardiologie</specializare>
         </doctor>
 
@@ -67,19 +67,14 @@
         </doctor>
 
          <doctor>
-            <nume>Toma Răzvan</nume>
+            <nume>Toma Razvan</nume>
             <specializare>Stomatologie</specializare>
-        </doctor>
+         </doctor>
 
          <doctor>
             <nume>Adam Miruna</nume>
             <specializare>Neurologie</specializare>
-        </doctor>
-
-         <doctor>
-            <nume>Adam Miruna</nume>
-            <specializare>Neurologie</specializare>
-        </doctor>
+         </doctor>
     </doctori>
     <consultatii>
         <consultatie>
@@ -87,93 +82,71 @@
             <nume_pacient>Andrei</nume_pacient>
             <data_consultatiei>10.03.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Popescu Daniela</nume_doctor>
             <nume_pacient>Alex</nume_pacient>
             <data_consultatiei>15.04.2023</data_consultatiei>
         </consultatie>
-
-       <consultatie>
+        <consultatie>
             <nume_doctor>Dumitru Stefan</nume_doctor>
             <nume_pacient>Raluca</nume_pacient>
             <data_consultatiei>20.08.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Ionescu Lavinia</nume_doctor>
             <nume_pacient>Larisa</nume_pacient>
             <data_consultatiei>20.09.2023</data_consultatiei>
         </consultatie>
-
-
-
-       <consultatie>
+        <consultatie>
             <nume_doctor>Adam Miruna</nume_doctor>
             <nume_pacient>Raluca</nume_pacient>
             <data_consultatiei>15.07.2023</data_consultatiei>
         </consultatie>
-
-
         <consultatie>
             <nume_doctor>Ionescu Lavinia</nume_doctor>
             <nume_pacient>Raluca</nume_pacient>
             <data_consultatiei>27.11.2023</data_consultatiei>
         </consultatie>
-
-
         <consultatie>
             <nume_doctor>Adam Miruna</nume_doctor>
             <nume_pacient>Alex</nume_pacient>
             <data_consultatiei>05.05.2023</data_consultatiei>
         </consultatie>
-
-
         <consultatie>
             <nume_doctor>Popescu Daniela</nume_doctor>
             <nume_pacient>Alina</nume_pacient>
             <data_consultatiei>18.06.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Dumitru Stefan</nume_doctor>
             <nume_pacient>David</nume_pacient>
             <data_consultatiei>11.10.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Adam Miruna</nume_doctor>
             <nume_pacient>Alina</nume_pacient>
             <data_consultatiei>18.08.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Ionescu Lavinia</nume_doctor>
             <nume_pacient>Alex</nume_pacient>
             <data_consultatiei>20.07.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Toma Razvan</nume_doctor>
             <nume_pacient>Alina</nume_pacient>
             <data_consultatiei>23.10.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Toma Razvan</nume_doctor>
             <nume_pacient>Bogdan</nume_pacient>
             <data_consultatiei>04.07.2023</data_consultatiei>
         </consultatie>
-
-
-
-
         <consultatie>
             <nume_doctor>Dumitru Stefan</nume_doctor>
             <nume_pacient>Mihai</nume_pacient>
             <data_consultatiei>13.06.2023</data_consultatiei>
         </consultatie>
-
         <consultatie>
             <nume_doctor>Dumitru Stefan</nume_doctor>
             <nume_pacient>Bogdan</nume_pacient>
