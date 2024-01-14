@@ -44,6 +44,9 @@ export class MainComponent implements OnInit {
   // chart for medical specialitie
   chartMedicalSpecialities = {};
 
+  // chart for season appointment
+  chartSeasonApp = {};
+
   // number of pacients that had an appointment to cardiology
   cardiologyPacients: number = 0;
 
@@ -53,9 +56,16 @@ export class MainComponent implements OnInit {
   // number of pacients that had an appointment to neurology
   neurologyPacients: number = 0;
 
+  // number of appointments that took place in spring
   springApp: number = 0;
+
+  // number of appointments that took place in summer
   summerApp: number = 0;
+
+  // number of appointments that took place in autumn
   autumnApp: number = 0;
+
+  // number of appointments that took place in winter
   winterApp: number = 0;
 
   constructor(private xmlService: XmlService) {}
@@ -202,44 +212,87 @@ export class MainComponent implements OnInit {
     this.autumnApp = 0;
     this.winterApp = 0;
 
-    // for (let i = 0; i < this.appointments.consultatie.length; i++) {
-      // const dateString = this.appointments.consultatie[i].data_consultatiei;
-      // const dateParts = dateString.split('.');
-      // const transformedDate = new Date(
-      //   +dateParts[2],
-      //   +dateParts[1] - 1,
-      //   +dateParts[0]
-      // );
+    let date1 = new Date();
 
-      // const date1 = new Date('2023-12-10'); // Replace this with your actual date
-      // const date2 = new Date('2023-11-15'); // Replace this with your actual date
+    for (let i = 0; i < this.appointments.consultatie.length; i++) {
+      const appDate = this.appointments.consultatie[i].data_consultatiei._text;
+      const dateParts = appDate.split('.');
+      const transformedDate = new Date(
+        `${dateParts[1]}.${dateParts[0]}.${dateParts[2]}`
+      );
+      const formattedDateString = `${
+        transformedDate.getMonth() + 1
+      }.${transformedDate.getDate()}.${transformedDate.getFullYear()}`;
 
-      // if (date1 > date2) {
-      //   console.log('Date 1 is later than Date 2');
-      // } else if (date1 < date2) {
-      //   console.log('Date 1 is earlier than Date 2');
-      // } else {
-      //   console.log('Date 1 is equal to Date 2');
-      // }
-    // }
+      if (this.getSeason(formattedDateString) === 'spring') {
+        this.springApp++;
+      }
 
-    // this.chartPacientsAge = {
-    //   animationEnabled: true,
-    //   title: {
-    //     text: 'Statistica varsta pacienti',
-    //   },
-    //   data: [
-    //     {
-    //       type: 'pie',
-    //       indexLabel: '{name}: {y}%',
-    //       dataPoints: [
-    //         { name: 'Sub 20 de ani', y: this.under20 },
-    //         { name: 'Intre 20 si 30 de ani', y: this.between20and30 },
-    //         { name: 'Intre 30 si 40 de ani', y: this.between30and40 },
-    //         { name: 'Peste 40 de ani', y: this.over40 },
-    //       ],
-    //     },
-    //   ],
-    // };
+      if (this.getSeason(formattedDateString) === 'summer') {
+        this.summerApp++;
+      }
+
+      if (this.getSeason(formattedDateString) === 'autumn') {
+        this.autumnApp++;
+      }
+
+      if (this.getSeason(formattedDateString) === 'winter') {
+        this.winterApp++;
+      }
+    }
+
+    this.chartSeasonApp = {
+      animationEnabled: true,
+      title: {
+        text: 'Statistica programari in functie de anotimp',
+      },
+      data: [
+        {
+          type: 'pie',
+          indexLabel: '{name}: {y}%',
+          dataPoints: [
+            { name: 'Vara', y: this.summerApp },
+            { name: 'Primavara', y: this.springApp },
+            { name: 'Toamna', y: this.autumnApp },
+            { name: 'Iarna', y: this.winterApp },
+          ],
+        },
+      ],
+    };
+  }
+
+  // method that returns in which season is the date given as an input
+  getSeason(dateString: string): string {
+    const dateParts = dateString.split('.');
+    const month = parseInt(dateParts[0], 10);
+    const day = parseInt(dateParts[1], 10);
+
+    if (
+      (month === 12 && day >= 1) ||
+      month === 1 ||
+      (month === 2 && day < 30)
+    ) {
+      return 'winter';
+    } else if (
+      (month === 3 && day >= 1) ||
+      month === 4 ||
+      (month === 5 && day < 32)
+    ) {
+      return 'spring';
+    } else if (
+      (month === 6 && day >= 1) ||
+      month === 7 ||
+      (month === 8 && day < 32)
+    ) {
+      return 'summer';
+    } else if (
+      (month === 9 && day >= 1) ||
+      month === 10 ||
+      (month === 11 && day < 31)
+    ) {
+      return 'autumn';
+    } else {
+      return 'Date is not valid';
+    }
   }
 }
