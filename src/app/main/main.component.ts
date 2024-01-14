@@ -1,22 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { XmlService } from './main.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
-export class MainComponent {
-  xmlData: any;
+export class MainComponent implements OnInit {
+  parsedData: any;
 
-  // constructor(private xmlService: XmlService) {}
+  constructor(private xmlService: XmlService) {}
 
-  // ngOnInit(): void {
-  //   this.xmlService.parseXmlFile('path/to/your/xml/file.xml')
-  //     .then((data: any) => {
-  //       this.xmlData = data;
-  //     })
-  //     .catch((error: any) => {
-  //       console.error('Error parsing XML:', error);
-  //     });
-  // }
+  ngOnInit(): void {
+    this.xmlService
+      .parseXmlFile('assets/data.xml')
+      .then((data) => {
+        this.parsedData = data;
+      })
+      .catch((error) => {
+        console.error('Error parsing XML:', error);
+      });
+  }
 }

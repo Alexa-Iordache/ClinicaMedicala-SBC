@@ -1,0 +1,252 @@
+<informatii_medicale>
+    <pacienti>
+        <pacient>
+            <nume>Andrei</nume>
+            <varsta>20</varsta>
+        </pacient>
+
+       <pacient>
+            <nume>Ana</nume>
+            <varsta>18</varsta>
+        </pacient>
+
+        <pacient>
+            <nume>Alexandru</nume>
+            <varsta>40</varsta>
+        </pacient>
+
+        <pacient>
+            <nume>Alina</nume>
+            <varsta>47</varsta>
+        </pacient>
+
+        <pacient>
+            <nume>David</nume>
+            <varsta>20</varsta>
+        </pacient>
+
+        <pacient>
+            <nume>andrei</nume>
+            <varsta>27</varsta>
+        </pacient>
+
+        <pacient>
+            <nume>Larisa</nume>
+            <varsta>22</varsta>
+        </pacient>
+
+         <pacient>
+            <nume>Raluca</nume>
+            <varsta>23</varsta>
+        </pacient>
+
+        <pacient>
+            <nume>Mihai</nume>
+            <varsta>19</varsta>
+        </pacient>
+
+        <pacient>
+            <nume>Bogdan</nume>
+            <varsta>25</varsta>
+        </pacient>
+    </pacienti>
+
+
+
+
+
+
+
+    <doctori>
+        <doctor>
+            <nume>Popescu Daniela</nume>
+            <specializare>Cardiologie</specializare>
+        </doctor>
+
+        <doctor>
+            <nume>Dumitru Ștefan</nume>
+            <specializare>Cardiologie</specializare>
+        </doctor>
+
+        <doctor>
+            <nume>Ionescu Lavinia</nume>
+            <specializare>Stomatologie</specializare>
+        </doctor>
+
+         <doctor>
+            <nume>Toma Răzvan</nume>
+            <specializare>Stomatologie</specializare>
+        </doctor>
+
+         <doctor>
+            <nume>Adam Miruna</nume>
+            <specializare>Neurologie</specializare>
+        </doctor>
+
+         <doctor>
+            <nume>Adam Miruna</nume>
+            <specializare>Neurologie</specializare>
+        </doctor>
+    </doctori>
+
+
+    <consultatii>
+        <consultatie>
+            <nume_doctor>Popescu Daniela</nume_doctor>
+            <nume_pacient>Andrei</nume_pacient>
+            <data_consultatiei>10.03.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Popescu Daniela</nume_doctor>
+            <nume_pacient>Alex</nume_pacient>
+            <data_consultatiei>15.04.2023</data_consultatiei>
+        </consultatie>
+
+       <consultatie>
+            <nume_doctor>Dumitru Stefan</nume_doctor>
+            <nume_pacient>Raluca</nume_pacient>
+            <data_consultatiei>20.08.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Ionescu Lavinia</nume_doctor>
+            <nume_pacient>Larisa</nume_pacient>
+            <data_consultatiei>20.09.2023</data_consultatiei>
+        </consultatie>
+
+
+
+       <consultatie>
+            <nume_doctor>Adam Miruna</nume_doctor>
+            <nume_pacient>Raluca</nume_pacient>
+            <data_consultatiei>15.07.2023</data_consultatiei>
+        </consultatie>
+
+
+        <consultatie>
+            <nume_doctor>Ionescu Lavinia</nume_doctor>
+            <nume_pacient>Raluca</nume_pacient>
+            <data_consultatiei>27.11.2023</data_consultatiei>
+        </consultatie>
+
+
+        <consultatie>
+            <nume_doctor>Adam Miruna</nume_doctor>
+            <nume_pacient>Alex</nume_pacient>
+            <data_consultatiei>05.05.2023</data_consultatiei>
+        </consultatie>
+
+
+        <consultatie>
+            <nume_doctor>Popescu Daniela</nume_doctor>
+            <nume_pacient>Alina</nume_pacient>
+            <data_consultatiei>18.06.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Dumitru Stefan</nume_doctor>
+            <nume_pacient>David</nume_pacient>
+            <data_consultatiei>11.10.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Adam Miruna</nume_doctor>
+            <nume_pacient>Alina</nume_pacient>
+            <data_consultatiei>18.08.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Ionescu Lavinia</nume_doctor>
+            <nume_pacient>Alex</nume_pacient>
+            <data_consultatiei>20.07.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Toma Razvan</nume_doctor>
+            <nume_pacient>Alina</nume_pacient>
+            <data_consultatiei>23.10.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Toma Razvan</nume_doctor>
+            <nume_pacient>Bogdan</nume_pacient>
+            <data_consultatiei>04.07.2023</data_consultatiei>
+        </consultatie>
+
+
+
+
+        <consultatie>
+            <nume_doctor>Dumitru Stefan</nume_doctor>
+            <nume_pacient>Mihai</nume_pacient>
+            <data_consultatiei>13.06.2023</data_consultatiei>
+        </consultatie>
+
+        <consultatie>
+            <nume_doctor>Dumitru Stefan</nume_doctor>
+            <nume_pacient>Bogdan</nume_pacient>
+            <data_consultatiei>28.07.2023</data_consultatiei>
+        </consultatie>
+    </consultatii>
+
+
+
+    <fise_medicale>
+        <fisa_medicala>
+            <nume_pacient>Andrei</nume_pacient>
+            <boala>tensiune_arteriala</boala>
+        </fisa_medicala>
+
+        <fisa_medicala>
+            <nume_pacient>Alex</nume_pacient>
+            <boala>colesterol_ridicat</boala>
+        </fisa_medicala>
+
+        <fisa_medicala>
+            <nume_pacient>Maria</nume_pacient>
+            <boala>alergie</boala>
+        </fisa_medicala>
+
+        <fisa_medicala>
+            <nume_pacient>Alina</nume_pacient>
+            <boala>tuse</boala>
+        </fisa_medicala>
+
+        <fisa_medicala>
+            <nume_pacient>Larisa</nume_pacient>
+            <boala>nas_infundat</boala>
+        </fisa_medicala>
+
+        <fisa_medicala>
+            <nume_pacient>David</nume_pacient>
+            <boala>febra</boala>
+        </fisa_medicala>
+
+        <fisa_medicala>
+            <nume_pacient>Raluca</nume_pacient>
+            <boala>dificultati_respiratorii</boala>
+        </fisa_medicala>
+
+     </fise_medicale>
+
+    <spitale>
+        <spital>
+            <nume>spital1</nume>
+            <adresa>Str. Florilor, Nr. 1</adresa>
+            <capacitate>1000</capacitate>
+        </spital>
+
+       <spital>
+            <nume>spital2</nume>
+            <adresa>Str. 1 Decembrie, Nr. 12</adresa>
+            <capacitate>1700</capacitate>
+        </spital>
+
+        <spital>
+            <nume>spital3</nume>
+            <adresa>Str. Revolutiei, Nr. 7</adresa>
+            <capacitate>2000</capacitate>
+        </spital>
+    </spitale>
+</informatii_medicale>
