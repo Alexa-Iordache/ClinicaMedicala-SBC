@@ -50,7 +50,6 @@
             <varsta>25</varsta>
         </pacient>
     </pacienti>
-
     <doctori>
         <doctor>
             <nume>Popescu Daniela</nume>
@@ -82,7 +81,6 @@
             <specializare>Neurologie</specializare>
         </doctor>
     </doctori>
-
     <consultatii>
         <consultatie>
             <nume_doctor>Popescu Daniela</nume_doctor>
@@ -182,7 +180,6 @@
             <data_consultatiei>28.07.2023</data_consultatiei>
         </consultatie>
     </consultatii>
-
     <fise_medicale>
         <fisa_medicala>
             <nume_pacient>Andrei</nume_pacient>
